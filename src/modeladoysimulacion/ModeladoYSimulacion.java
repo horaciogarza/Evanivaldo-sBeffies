@@ -23,6 +23,7 @@ public class ModeladoYSimulacion {
         /*Scanner checkOption = new Scanner(System.in);
         System.out.println("What do you want to do?\n\n" +
                             "1. Generador Congruencial ");*/
+                                    
         GeneradorCongruencialMixto mix1 = new GeneradorCongruencialMixto(5, 4, 7, 8); //Funciona
         mix1.makeThisHappen();
         
