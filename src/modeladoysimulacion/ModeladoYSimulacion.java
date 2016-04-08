@@ -22,7 +22,12 @@ public class ModeladoYSimulacion {
         GeneradorCongruencialMixto mix1 = new GeneradorCongruencialMixto(a, x, c, m);
         mix1.makeThisHappen();*/
         
-        new GCMult(5,5,32);
+        new GCMult(4,9,16).init();
+        new GCMult(7,12,32).init();
+        new GCMult(5,8,64).init();
+        new GCMult(15,3,16).init();
+        
+        new GCMult(5,5,32).init();
         
     }
     

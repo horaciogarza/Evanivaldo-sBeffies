@@ -10,12 +10,15 @@ public class GCMult {
         this.a = a;
         this.x = x;
         this.m = m;
-        init();
     }
     
     public void init(){
         pe = getPE(m);
-        cal();
+        if(cal()){
+            System.out.println("Generador Confiable");
+        }else{
+            System.out.println("Generador No Confiable");
+        }
     }
     
     public boolean bord(int m){
@@ -79,13 +82,20 @@ public class GCMult {
         return pe;
     }
     
-    private void cal(){
-        int i = 1;
+    private boolean cal(){
+        boolean res;
+        int i = 0;
         int newX = x;
         do{
-            newX = new line(i, newX).lineCal(a);
             i++;
-        }while(x != newX || i == pe);
+            newX = new line(i, newX).lineCal(a);
+        }while(x != newX && !(pe == i));
+        if(x == newX && pe == i){
+            res = true;
+        }else{
+            res = false;
+        }
+        return res;
     }
     
     
