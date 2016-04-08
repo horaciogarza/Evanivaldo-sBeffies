@@ -2,6 +2,7 @@ package modeladoysimulacion;
 
 import java.util.Scanner;
 import modeladoysimulacion.MedioCurso.GCMult;
+import modeladoysimulacion.MedioCurso.GRandom;
 import modeladoysimulacion.MedioCurso.GeneradorCongruencialMixto;
 
 public class ModeladoYSimulacion {
@@ -22,13 +23,18 @@ public class ModeladoYSimulacion {
         GeneradorCongruencialMixto mix1 = new GeneradorCongruencialMixto(a, x, c, m);
         mix1.makeThisHappen();*/
         
-        new GCMult(4,9,16).init();
-        new GCMult(7,12,32).init();
+        //new GCMult(4,9,16).init();
+        /*new GCMult(7,12,32).init();
         new GCMult(5,8,64).init();
         new GCMult(15,3,16).init();
         
-        new GCMult(5,5,32).init();
+        new GCMult(5,5,32).init();*/
+        
+        GRandom rA = new GRandom();
+        double[] rndL = rA.getRndL(13);
+        for(int i = 1; i < 14; i++){
+            System.out.println("Dato " + i + " : " + rndL[i - 1]);
+        }
         
     }
-    
 }
