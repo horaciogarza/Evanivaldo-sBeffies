@@ -1,31 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modeladoysimulacion;
 
 import java.util.Scanner;
+import modeladoysimulacion.MedioCurso.GCMult;
 import modeladoysimulacion.MedioCurso.GeneradorCongruencialMixto;
 
-/**
- *
- * @author hgx95
- */
 public class ModeladoYSimulacion {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         
+        /*Scanner scan = new Scanner(System.in);
+        System.out.println("Ingresa A:\n");
+        int a = scan.nextInt();
+        System.out.println("Ingresa X0:\n");
+        int x = scan.nextInt();
+        System.out.println("Ingresa C:\n");
+        int c = scan.nextInt();
+        System.out.println("Ingresa M:\n");
+        int m = scan.nextInt();
         
-        /*Scanner checkOption = new Scanner(System.in);
-        System.out.println("What do you want to do?\n\n" +
-                            "1. Generador Congruencial ");*/
                                     
-        GeneradorCongruencialMixto mix1 = new GeneradorCongruencialMixto(5, 4, 7, 8); //Funciona
-        mix1.makeThisHappen();
+        GeneradorCongruencialMixto mix1 = new GeneradorCongruencialMixto(a, x, c, m);
+        mix1.makeThisHappen();*/
+        
+        new GCMult(5,5,32);
         
     }
     
