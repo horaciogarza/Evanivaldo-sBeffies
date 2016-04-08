@@ -31,8 +31,9 @@ public class ModeladoYSimulacion {
         new GCMult(5,5,32).init();*/
         
         GRandom rA = new GRandom();
-        double[] rndL = rA.getRndL(13);
-        for(int i = 1; i < 14; i++){
+        int size = 20;
+        double[] rndL = rA.getRndL(size);
+        for(int i = 1; i < size + 1; i++){
             System.out.println("Dato " + i + " : " + rndL[i - 1]);
         }
         
