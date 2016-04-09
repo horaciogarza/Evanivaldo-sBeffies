@@ -15,9 +15,9 @@ public class GCMult {
     public void init(){
         pe = getPE(m);
         if(cal()){
-            System.out.println("Generador Confiable");
+            System.out.println("(Por lo tanto)Generador Confiable");
         }else{
-            System.out.println("Generador No Confiable");
+            System.out.println("(Por lo tanto)Generador No Confiable");
         }
     }
     
@@ -31,8 +31,8 @@ public class GCMult {
             n1 = ms.charAt(0);
             n2 = ms.charAt(1);
             n3 = ms.charAt(2);
-        }catch(Exception e){
-            System.out.println(e);
+        }catch(StringIndexOutOfBoundsException e){
+            //System.out.println(e);
         }
         if(n1 == '1'){
             if(n2 == '0' || n2 == ' '){
@@ -63,16 +63,16 @@ public class GCMult {
             int exp = getExp(m);
             switch(exp){
                 case 1: 
-                    pe = 0;
+                    pe = 4;
                     break;
                 case 2:
-                    pe = 0;
+                    pe = 20;
                     break;
                 case 3: 
-                    pe = 0;
+                    pe = 100;
                     break;
                 case 4: 
-                    pe = 0;
+                    pe = 500;
                     break;
                 default:
                     exp -= 2;
@@ -86,6 +86,7 @@ public class GCMult {
         boolean res;
         int i = 0;
         int newX = x;
+        System.out.println("n \t Xo \t aXomodm \t Xn+1 \tNum. Rectangulares");
         do{
             i++;
             newX = new line(i, newX).lineCal(a);
@@ -120,7 +121,7 @@ public class GCMult {
         }
         
         public void print(){
-            System.out.println(n+" "+x0+" "+fun+" "+x+" "+recD);
+            System.out.println(n+"\t "+x0+"\t "+fun+"\t "+x+"\t "+recD);
         }
         
     }
