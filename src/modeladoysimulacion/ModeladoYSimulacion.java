@@ -8,42 +8,41 @@ import modeladoysimulacion.MedioCurso.GeneradorCongruencialMixto;
 public class ModeladoYSimulacion {
 
     public static void main(String[] args) {
-        int sel = 0, bi = 0;
-        int cont;
+        char sel = '0', bi = 0;
+        char cont;
         Scanner scan = new Scanner(System.in);
         do{
             do{
+            bi = 0;
             System.out.println("Que tipo de generador deseas:\n(Presione el num que desea y de enter)\n"
                 + "1.Generador Congruencial Mixto\n" + "2.Generador Congruencial Multiplicativo\n"
                 + "3.Generador Alternativo(propio)\n");
-            if(scan.hasNextInt()){
-                sel = scan.nextInt();
-                bi = 1;
-            }
-            else
-                System.out.println("Formato no valido");
-            }while(bi == 0);
+            sel = scan.next().charAt(0);
         switch(sel){
-            case 1:
+            case '1':
                 GCMix();
                 break;
-            case 2:
+            case '2':
                 GCMult();
                 break;
-            case 3:
+            case '3':
                 GRndm();
                 break;
             default:
                 System.out.println("Opcion no valda.");
-        }
+                bi = 1;
+        }}while(bi == 1);
+        
             System.out.println("Deseas generar de nuevo?\n1.Si\n2.No");
-            cont = scan.nextInt();
-        }while(cont == 0);
+            cont = scan.next().charAt(0);
+            
+        }while(cont == '1');
         
     }
 
     private static void GCMix() {
         Scanner scan = new Scanner(System.in);
+        try{
         System.out.println("Ingresa A:\n");
         int a = scan.nextInt();
         System.out.println("Ingresa X0:\n");
@@ -52,14 +51,20 @@ public class ModeladoYSimulacion {
         int c = scan.nextInt();
         System.out.println("Ingresa M:\n");
         int m = scan.nextInt();
-        
-                                    
         GeneradorCongruencialMixto mix1 = new GeneradorCongruencialMixto(a, x, c, m);
         mix1.makeThisHappen();
+        }catch(Exception e){
+            System.out.println("Error");
+            return;
+        }
+        
+                                    
+        
     }
 
     private static void GCMult() {
         Scanner scan = new Scanner(System.in);
+        try{
         System.out.println("Ingresa A:\n");
         int a = scan.nextInt();
         System.out.println("Ingresa X0:\n");
@@ -67,13 +72,23 @@ public class ModeladoYSimulacion {
         System.out.println("Ingresa M:\n");
         int m = scan.nextInt();
         new GCMult(a, x, m).init();
+        }catch(Exception e){
+            System.out.println("Error");
+            return;
+        }
+        
     }
 
     private static void GRndm() {
         Scanner scan = new Scanner(System.in);
         int size;
         System.out.println("Cuantos numeros quieres generar?(indique el num y de enter)");
-        size = scan.nextInt();
+        try{
+            size = scan.nextInt();
+        }catch(Exception e){
+            System.out.println("Error");
+            return;
+        }
         GRandom rA = new GRandom();
         double[] rndL = rA.getRndL(size);
         for(int i = 1; i < size + 1; i++){
