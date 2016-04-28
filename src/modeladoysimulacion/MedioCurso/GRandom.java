@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class GRandom {
 
-    public double[] getRndL(int size) {
+    public static double[] getRndL(int size) {
         double[] rndL = new double[size];
         Random rm = new Random();
         int[] iL = new int[size];

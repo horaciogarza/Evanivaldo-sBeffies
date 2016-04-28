@@ -4,12 +4,19 @@ import java.util.Scanner;
 import modeladoysimulacion.MedioCurso.GCMult;
 import modeladoysimulacion.MedioCurso.GRandom;
 import modeladoysimulacion.MedioCurso.GeneradorCongruencialMixto;
+import modeladoysimulacion.MedioCurso.Pruebas.Estadisticas;
+import modeladoysimulacion.MedioCurso.Pruebas.KolmogorovSmirnov;
 
 public class ModeladoYSimulacion {
 
     public static void main(String[] args) {
         char sel = '0', bi = 0;
         char cont;
+        
+        new KolmogorovSmirnov(5).print().compareD(.409);
+        
+        //PEstadistica();
+        
         Scanner scan = new Scanner(System.in);
         do{
             do{
@@ -94,5 +101,9 @@ public class ModeladoYSimulacion {
         for(int i = 1; i < size + 1; i++){
             System.out.println("Dato " + i + " : " + rndL[i - 1]);
         }
+    }
+    
+    private static void PEstadistica(){
+        new Estadisticas(5).compareZ(1.96);
     }
 }
