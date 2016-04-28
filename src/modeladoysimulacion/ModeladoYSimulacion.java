@@ -16,7 +16,7 @@ public class ModeladoYSimulacion {
             bi = 0;
             System.out.println("Que tipo de generador deseas:\n(Presione el num que desea y de enter)\n"
                 + "1.Generador Congruencial Mixto\n" + "2.Generador Congruencial Multiplicativo\n"
-                + "3.Generador Alternativo(propio)\n");
+                + "3.Generador Alternativo(propio)");
             sel = scan.next().charAt(0);
         switch(sel){
             case '1':
@@ -43,13 +43,13 @@ public class ModeladoYSimulacion {
     private static void GCMix() {
         Scanner scan = new Scanner(System.in);
         try{
-        System.out.println("Ingresa A:\n");
+        System.out.print("Ingresa A: ");
         int a = scan.nextInt();
-        System.out.println("Ingresa X0:\n");
+        System.out.print("Ingresa X0: ");
         int x = scan.nextInt();
-        System.out.println("Ingresa C:\n");
+        System.out.print("Ingresa C: ");
         int c = scan.nextInt();
-        System.out.println("Ingresa M:\n");
+        System.out.print("Ingresa M: ");
         int m = scan.nextInt();
         GeneradorCongruencialMixto mix1 = new GeneradorCongruencialMixto(a, x, c, m);
         mix1.makeThisHappen();
@@ -65,11 +65,11 @@ public class ModeladoYSimulacion {
     private static void GCMult() {
         Scanner scan = new Scanner(System.in);
         try{
-        System.out.println("Ingresa A:\n");
+        System.out.print("Ingresa A: ");
         int a = scan.nextInt();
-        System.out.println("Ingresa X0:\n");
+        System.out.print("Ingresa X0: ");
         int x = scan.nextInt();
-        System.out.println("Ingresa M:\n");
+        System.out.print("Ingresa M: ");
         int m = scan.nextInt();
         new GCMult(a, x, m).init();
         }catch(Exception e){
