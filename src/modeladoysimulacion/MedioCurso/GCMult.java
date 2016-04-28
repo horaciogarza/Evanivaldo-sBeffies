@@ -114,14 +114,14 @@ public class GCMult {
         private int lineCal(int a){
             this.x =(a*x0)%m;
             this.funint = (a * x0) / m;
-            this.fun = funint +"+"+x+"/"+m;
+            this.fun = funint +"+ ("+x+"/"+m + ")";
             this.recD = (double)x/m;
             print();
             return x;
         }
         
         public void print(){
-            System.out.println(n+"\t "+x0+"\t "+fun+"\t "+x+"\t "+recD);
+            System.out.println(n+"\t "+x0+"\t "+fun+"\t  "+x+"\t "+recD);
         }
         
     }
