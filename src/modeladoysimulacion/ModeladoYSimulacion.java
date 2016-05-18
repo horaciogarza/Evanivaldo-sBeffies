@@ -1,10 +1,13 @@
 package modeladoysimulacion;
 
 import java.util.Scanner;
+import modeladoysimulacion.MedioCurso.Distribuciones.Exponencial;
+import modeladoysimulacion.MedioCurso.Distribuciones.Uniforme;
 import modeladoysimulacion.MedioCurso.GCMult;
 import modeladoysimulacion.MedioCurso.GRandom;
 import modeladoysimulacion.MedioCurso.GeneradorCongruencialMixto;
 import modeladoysimulacion.MedioCurso.Pruebas.Estadisticas;
+import modeladoysimulacion.MedioCurso.Pruebas.Frecuencias;
 import modeladoysimulacion.MedioCurso.Pruebas.KolmogorovSmirnov;
 
 public class ModeladoYSimulacion {
@@ -13,9 +16,7 @@ public class ModeladoYSimulacion {
         char sel = '0', bi = 0;
         char cont;
         
-        new KolmogorovSmirnov(5).print().compareD(.409);
-        
-        //PEstadistica();
+        new Uniforme(3,5,5);
         
         Scanner scan = new Scanner(System.in);
         do{
@@ -105,5 +106,17 @@ public class ModeladoYSimulacion {
     
     private static void PEstadistica(){
         new Estadisticas(5).compareZ(1.96);
+    }
+    
+    private static void PKolomogorov(){
+        new KolmogorovSmirnov(5).print().compareD(.409);
+    }
+    
+    private static void PFrecuencias(){
+        new Frecuencias(4,10).compareX(7.81);
+    }
+    
+    private static void DExponencial(){
+        new Exponencial(3,5);
     }
 }
