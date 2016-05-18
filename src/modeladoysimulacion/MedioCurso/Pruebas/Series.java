@@ -44,7 +44,7 @@ public class Series {
             
         }
     }
-    // Getters and Setters
+    // Getters and Settersty
     public double[] getNumRect() {
         return numRect;
     }
