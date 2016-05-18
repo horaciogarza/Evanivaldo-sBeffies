@@ -43,7 +43,8 @@ public class GeneradorCongruencialMixto {
         this.isTrustable = false;
         this.rectNumb = 0.0;
         this.n = 1;
-        this.resultsToPrint = null;
+        
+        resultsToPrint = new String[this.m][5];
 
     }
 
@@ -56,12 +57,18 @@ public class GeneradorCongruencialMixto {
 
         for (int i = n; i <= m; i++, n++) {
 
+            System.out.println(x0);
             currentFraction = new Fraction((a * x0 + c) % m, m);
             xn1 = currentFraction.getNumerator();
             rectNumb = currentFraction.evaluate();
-            x0 = xn1;
+            String fractionAdded = ((Integer) ((a * x0 + c)/ m)).toString();
+            
+            System.out.println("sad " + x0);
 
-            setValuesOnArray(i, m, ((Integer) n).toString(), ((Integer) x0).toString(), currentFraction.toString(), ((Integer) xn1).toString(), ((Double) rectNumb).toString());
+            
+            setValuesOnArray(i, m, ((Integer) n).toString(), ((Integer) x0).toString(), fractionAdded + " " + currentFraction.toString(), ((Integer) xn1).toString(), ((Double) rectNumb).toString());
+            x0 = xn1;
+            
 
             if (xn1 == initialX0 && i != m) {
                 break;
@@ -85,37 +92,54 @@ public class GeneradorCongruencialMixto {
 
     public String letsPrintThisShit() {
         String returningTheArray = "";
-        returningTheArray = "n\tx0\txn+1\t#Rect";
-
+        returningTheArray = "n\tx0\t(ax0+c)modm\txn+1\t#Rect";
+        boolean breakOrWhat = false;
         for (String[] s : resultsToPrint) {
             returningTheArray += "\n";
+            int ajax = 0;
             for(String s2 : s){
+                if (s2 == null) {
+                   breakOrWhat = true;
+                   break;
+                   
+                }
                 returningTheArray += s2 + "\t";
+                if (ajax == 2) {
+                    returningTheArray += "\t";
+                    
+                }
+                
+                ajax++;
+            }
+            if (breakOrWhat) {
+                break;
             }
 
         }
+        returningTheArray += "\n\n" + (isTrustable? "Generador Congruencial Mixto Confiable" : "Generador Congruencial Mixto No Confiable");
         return returningTheArray;
     }
 
     private void setValuesOnArray(int i, int m, String n, String x0, String currentFraction, String xn1, String rectNumb) {
         if (resultsToPrint != null) {
+            int aux = --i;
             for (int j = 0; j < 5; j++) {
 
                 switch (j) {
                     case 0:
-                        resultsToPrint[i][j] = n;
+                        resultsToPrint[aux][j] = n;
                         break;
                     case 1:
-                        resultsToPrint[i][j] = x0;
+                        resultsToPrint[aux][j] = x0;
                         break;
                     case 2:
-                        resultsToPrint[i][j] = currentFraction;
+                        resultsToPrint[aux][j] = currentFraction;
                         break;
                     case 3:
-                        resultsToPrint[i][j] = xn1;
+                        resultsToPrint[aux][j] = xn1;
                         break;
                     case 4:
-                        resultsToPrint[i][j] = rectNumb;
+                        resultsToPrint[aux][j] = rectNumb;
                         break;
                 }
 
@@ -123,22 +147,22 @@ public class GeneradorCongruencialMixto {
         } else {
             resultsToPrint = new String[5][m];
             for (int j = 0; j < 5; j++) {
-
+                int aux = --i;
                 switch (j) {
                     case 0:
-                        resultsToPrint[i][j] = n;
+                        resultsToPrint[aux][j] = n;
                         break;
                     case 1:
-                        resultsToPrint[i][j] = x0;
+                        resultsToPrint[aux][j] = x0;
                         break;
                     case 2:
-                        resultsToPrint[i][j] = currentFraction;
+                        resultsToPrint[aux][j] = currentFraction;
                         break;
                     case 3:
-                        resultsToPrint[i][j] = xn1;
+                        resultsToPrint[aux][j] = xn1;
                         break;
                     case 4:
-                        resultsToPrint[i][j] = rectNumb;
+                        resultsToPrint[aux][j] = rectNumb;
                         break;
                 }
 
