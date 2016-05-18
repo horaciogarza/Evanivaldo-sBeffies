@@ -57,14 +57,11 @@ public class GeneradorCongruencialMixto {
 
         for (int i = n; i <= m; i++, n++) {
 
-            System.out.println(x0);
             currentFraction = new Fraction((a * x0 + c) % m, m);
             xn1 = currentFraction.getNumerator();
             rectNumb = currentFraction.evaluate();
             String fractionAdded = ((Integer) ((a * x0 + c)/ m)).toString();
             
-            System.out.println("sad " + x0);
-
             
             setValuesOnArray(i, m, ((Integer) n).toString(), ((Integer) x0).toString(), fractionAdded + " " + currentFraction.toString(), ((Integer) xn1).toString(), ((Double) rectNumb).toString());
             x0 = xn1;
@@ -80,13 +77,7 @@ public class GeneradorCongruencialMixto {
             isTrustable = true;
         }
 
-        if (isTrustable) {
-
-            System.out.println("Generador Congruencial Mixto confiable");
-
-        } else {
-            System.out.println("Generador Congruencial Mixto no confiable");
-        }
+        
 
     }
 
