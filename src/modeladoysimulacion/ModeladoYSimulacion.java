@@ -19,9 +19,9 @@ public class ModeladoYSimulacion {
         do {
             do {
                 bi = 0;
-                System.out.println("Que tipo de generador deseas:\n(Presione el num que desea y de enter)\n"
+                System.out.println("¿Qué tipo de generador deseas?:\n(Tecleé el numero que desea y presione enter)\n"
                         + "1.Generador Congruencial Mixto\n" + "2.Generador Congruencial Multiplicativo\n"
-                        + "3.Generador Alternativo(propio)\n4.Frecuencia\n5.Series");
+                        + "3.Generador Alternativo(Propio)\n4.Frecuencia\n5.Series");
                 sel = scan.next().charAt(0);
                 switch (sel) {
                     case '1':
@@ -37,12 +37,12 @@ public class ModeladoYSimulacion {
                         Series();
                         break;
                     default:
-                        System.out.println("Opcion no valda.");
+                        System.out.println("Opción no valida.");
                         bi = 1;
                 }
             } while (bi == 1);
 
-            System.out.println("Deseas generar de nuevo?\n1.Si\n2.No");
+            System.out.println("¿Deseas generar de nuevo?\n1.Sí\n2.No");
             cont = scan.next().charAt(0);
 
         } while (cont == '1');
@@ -90,7 +90,7 @@ public class ModeladoYSimulacion {
     private static void GRndm() {
         Scanner scan = new Scanner(System.in);
         int size;
-        System.out.println("Cuantos numeros quieres generar?(indique el num y de enter)");
+        System.out.println("¿Cuántos numeros desea generar?(Tecleé el numero y presione enter)");
         try {
             size = scan.nextInt();
         } catch (Exception e) {
