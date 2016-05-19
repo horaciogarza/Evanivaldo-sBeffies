@@ -23,9 +23,13 @@ public class Poisson {
         int i=0;
         fxi = new ArrayList();
         fxiSum = 0;
+        System.out.println("x\tf(Xi)\t\t\tF(Xi)");
         do{
             fxi.add(i,(Math.exp(-lambda)*Math.pow(lambda, i))/(factorial(i)));
             fxiSum += fxi.get(i);
+            if(fxiSum<1){
+                System.out.println(i+"\t"+fxi.get(i)+"\t"+fxiSum);
+            }
             i++;
         }while(fxiSum<.99997);
         

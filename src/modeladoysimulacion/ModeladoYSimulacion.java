@@ -23,7 +23,9 @@ public class ModeladoYSimulacion {
             bi = 0;
             System.out.println("Que tipo de generador deseas:\n(Presione el num que desea y de enter)\n"
                 + "1.Generador Congruencial Mixto\n" + "2.Generador Congruencial Multiplicativo\n"
-                + "3.Generador Alternativo(propio)");
+                + "3.Generador Alternativo(propio)\n" + "4.Prueba Estadisitcas\n"+"5.Prueba de Kolmogorov-Smirnov\n"
+                + "6.Prueba de Frecuencias\n" + "7.\n" + "8.Distribucion Exponencial\n"
+                + "9.Distribucion Uniforme\n" + "0.Distribucion de Poisson");
             sel = scan.next().charAt(0);
         switch(sel){
             case '1':
@@ -34,6 +36,26 @@ public class ModeladoYSimulacion {
                 break;
             case '3':
                 GRndm();
+                break;
+            case '4':
+                PEstadistica();
+                break;
+            case '5':
+                PKolomogorov();
+                break;
+            case '6':
+                PFrecuencias();
+                break;
+            case '7':
+                break;
+            case '8':
+                DExponencial();
+                break;
+            case '9':
+                DUniforme();
+                break;
+            case '0':
+                DPoisson();
                 break;
             default:
                 System.out.println("Opcion no valda.");
@@ -104,26 +126,101 @@ public class ModeladoYSimulacion {
     }
     
     private static void PEstadistica(){
-        new Estadisticas(5).compareZ(1.96);
+        Scanner scan = new Scanner(System.in);
+        int n;
+        float z;
+        try{
+            System.out.println("Ingrese cantidad de numeros Rectangulares(N)?");
+            n = scan.nextInt();
+            System.out.println("Ingrese El valor de Z a comparar?");
+            z = scan.nextFloat();
+        }catch(Exception e){
+            System.out.println("Error");
+            return;
+        }
+        new Estadisticas(n).compareZ(z);
     }
     
     private static void PKolomogorov(){
-        new KolmogorovSmirnov(5).print().compareD(.409);
+        Scanner scan = new Scanner(System.in);
+        int n;
+        float d;
+        try{
+            System.out.println("Ingrese cantidad de numeros Rectangulares(N)?");
+            n = scan.nextInt();
+            System.out.println("Ingrese El valor de D a comparar?");
+            d = scan.nextFloat();
+        }catch(Exception e){
+            System.out.println("Error");
+            return;
+        }
+        new KolmogorovSmirnov(n).print().compareD(d);
     }
     
     private static void PFrecuencias(){
-        new Frecuencias(4,10).compareX(7.81);
+        Scanner scan = new Scanner(System.in);
+        int nr;
+        int n;
+        float x;
+        try{
+            System.out.println("Ingrese el valor de n.");
+            n = scan.nextInt();
+            System.out.println("Ingrese cantidad de numeros Rectangulares(N)?");
+            nr = scan.nextInt();
+            System.out.println("Ingrese El valor de x^2 a comparar?");
+            x = scan.nextFloat();
+        }catch(Exception e){
+            System.out.println("Error");
+            return;
+        }
+        new Frecuencias(n,nr).compareX(x);
     }
     
     private static void DExponencial(){
-        new Exponencial(3,5);
+        Scanner scan = new Scanner(System.in);
+        int n;
+        int lambda;
+        try{
+            System.out.println("Ingrese El valor de λ");
+            lambda = scan.nextInt();
+            System.out.println("Ingrese cantidad de numeros Rectangulares(N)?");
+            n = scan.nextInt();
+        }catch(Exception e){
+            System.out.println("Error");
+            return;
+        }
+        new Exponencial(lambda,n);
     }
     
     private static void DUniforme(){
-        new Uniforme(3,5,5);
+        Scanner scan = new Scanner(System.in);
+        int n;
+        int a;
+        int b;
+        try{
+            System.out.println("Ingrese El valor de a");
+            a = scan.nextInt();
+            System.out.println("Ingrese El valor de b");
+            b = scan.nextInt();
+            System.out.println("Ingrese cantidad de numeros Rectangulares(N)?");
+            n = scan.nextInt();
+        }catch(Exception e){
+            System.out.println("Error");
+            return;
+        }
+        new Uniforme(a,b,n);
     }
     
     private static void DPoisson(){
-        new Poisson(5).print();
+        Scanner scan = new Scanner(System.in);
+        int lambda;
+        try{
+            System.out.println("Ingrese El valor de λ");
+            lambda = scan.nextInt();
+        }catch(Exception e){
+            System.out.println("Error");
+            return;
+        }
+        new Poisson(lambda).print();
     }
 }

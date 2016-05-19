@@ -42,15 +42,14 @@ public class Frecuencias {
         }
         xo2=0;
         for(int i=1;i<foi.length;i++){
-            System.out.println(foi[i]+"-"+fei);
             xo2 = Math.pow(foi[i]-fei, 2)+xo2;
         }
         xo2 = (1/fei)*xo2;
-        System.out.println(xo2);
         
     }
     
     public boolean compareX(double x2){
+        System.out.println("\n"+xo2+"<"+x2);
         if(xo2<x2){
             System.out.println("Los numeros son Aceptados");
             return true;

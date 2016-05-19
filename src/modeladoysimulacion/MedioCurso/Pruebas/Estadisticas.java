@@ -31,13 +31,12 @@ public class Estadisticas {
     }
     
     public boolean compareZ(double z){
+        System.out.println("");
         if(z0<z){
-            System.out.println("Z0<Z");
             System.out.println(z0+"<"+z);
             System.out.println("Los numeros son Aceptados");
             return true;
         }else{
-            System.out.println("Z0<Z");
             System.out.println(z0+"<"+z);
             System.out.println("Los numeros No son Aceptados");
             return false;
