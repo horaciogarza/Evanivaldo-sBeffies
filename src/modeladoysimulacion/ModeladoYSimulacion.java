@@ -2,6 +2,7 @@ package modeladoysimulacion;
 
 import java.util.Scanner;
 import modeladoysimulacion.MedioCurso.Distribuciones.Exponencial;
+import modeladoysimulacion.MedioCurso.Distribuciones.Poisson;
 import modeladoysimulacion.MedioCurso.Distribuciones.Uniforme;
 import modeladoysimulacion.MedioCurso.GCMult;
 import modeladoysimulacion.MedioCurso.GRandom;
@@ -15,8 +16,6 @@ public class ModeladoYSimulacion {
     public static void main(String[] args) {
         char sel = '0', bi = 0;
         char cont;
-        
-        new Uniforme(3,5,5);
         
         Scanner scan = new Scanner(System.in);
         do{
@@ -118,5 +117,13 @@ public class ModeladoYSimulacion {
     
     private static void DExponencial(){
         new Exponencial(3,5);
+    }
+    
+    private static void DUniforme(){
+        new Uniforme(3,5,5);
+    }
+    
+    private static void DPoisson(){
+        new Poisson(5).print();
     }
 }
