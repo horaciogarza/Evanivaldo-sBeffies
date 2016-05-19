@@ -4,8 +4,7 @@ import java.util.Scanner;
 import modeladoysimulacion.MedioCurso.GCMult;
 import modeladoysimulacion.MedioCurso.GRandom;
 import modeladoysimulacion.MedioCurso.GeneradorCongruencialMixto;
-import modeladoysimulacion.MedioCurso.Pruebas.Estadisticas;
-import modeladoysimulacion.MedioCurso.Pruebas.KolmogorovSmirnov;
+import modeladoysimulacion.MedioCurso.Pruebas.*;
 
 public class ModeladoYSimulacion {
 
@@ -22,7 +21,7 @@ public class ModeladoYSimulacion {
                 bi = 0;
                 System.out.println("Que tipo de generador deseas:\n(Presione el num que desea y de enter)\n"
                         + "1.Generador Congruencial Mixto\n" + "2.Generador Congruencial Multiplicativo\n"
-                        + "3.Generador Alternativo(propio)");
+                        + "3.Generador Alternativo(propio)\n4.Frecuencia\n5.Series");
                 sel = scan.next().charAt(0);
                 switch (sel) {
                     case '1':
@@ -33,6 +32,9 @@ public class ModeladoYSimulacion {
                         break;
                     case '3':
                         GRndm();
+                        break;
+                    case '5':
+                        Series();
                         break;
                     default:
                         System.out.println("Opcion no valda.");
@@ -104,5 +106,25 @@ public class ModeladoYSimulacion {
 
     private static void PEstadistica() {
         new Estadisticas(5).compareZ(1.96);
+    }
+
+    private static void Series() {
+        Series serie = new Series();
+        Scanner lec = new Scanner(System.in);
+        try {
+            System.out.println("a: ");
+            serie.setA(lec.nextInt());
+            
+            System.out.println("n: ");
+            serie.setN(lec.nextInt());
+            
+            serie = new Series(10, serie.getA(), serie.getN());
+            serie.letsStartThis();
+        } catch (Exception e) {
+            System.out.println("Error");
+            return;
+        }
+        
+        
     }
 }
