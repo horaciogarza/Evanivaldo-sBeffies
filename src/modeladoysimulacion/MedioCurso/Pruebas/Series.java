@@ -27,7 +27,7 @@ public class Series {
     private int quadrB;
     private int quadrC;
     private int quadrD;
-    private int alpha = 0;
+    private float alpha = 0;
     private double result;
     //private Map<double, double> coords;
 
@@ -62,7 +62,7 @@ public class Series {
                 Scanner lec = new Scanner(System.in);
                 
                 System.out.println("\nDame el valor a comparar: ");
-                alpha = lec.nextInt();
+                alpha = lec.nextFloat();
                 
             }catch(Exception ex){
                 

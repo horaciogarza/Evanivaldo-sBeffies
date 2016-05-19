@@ -51,6 +51,7 @@ public class KolmogorovSmirnov {
     }
     
     public KolmogorovSmirnov print(){
+        System.out.println("i"+"\tXi"+"\t\tF(Xi)"+"\tDn");
         for(int i = 1; i < n + 1; i++){
             System.out.println(i+"\t"+recs[i-1]+"\t\t"+fxi[i-1]+"\t"+dn[i-1]);
             //System.out.println("Dato " + i + " : " + recs[i - 1]);
@@ -60,6 +61,7 @@ public class KolmogorovSmirnov {
     }
     
     public boolean compareD(double d){
+        System.out.println("\n"+may+"<"+d);
         if(may<d){
             System.out.println("Los numeros son Aceptados");
             return true;
