@@ -1,7 +1,9 @@
 package modeladoysimulacion;
 
 import java.awt.Desktop;
+import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Scanner;
 import modeladoysimulacion.MedioCurso.Distribuciones.Exponencial;
@@ -25,45 +27,78 @@ public class ModeladoYSimulacion {
             do{
             bi = 0;
             System.out.println("Que tipo de generador deseas:\n(Presione el num que desea y de enter)\n"
-                + "1.Generador Congruencial Mixto\n" + "2.Generador Congruencial Multiplicativo\n"
-                + "3.Generador Alternativo(propio)\n" + "4.Prueba Estadisitcas\n"+"5.Prueba de Kolmogorov-Smirnov\n"
-                + "6.Prueba de Frecuencias\n" + "7.Series\n" + "8.Distribucion Exponencial\n"
-                + "9.Distribucion Uniforme\n" + "0.Distribucion de Poisson");
+                + "A.Generador Congruencial Mixto\n" + "B.Generador Congruencial Multiplicativo\n"
+                + "C.Generador Alternativo(propio)\n" + "D.Prueba Estadisitcas\n"+"E.Prueba de Kolmogorov-Smirnov\n"
+                + "F.Prueba de Frecuencias\n" + "G.Series\n" + "H.Distribucion Exponencial\n"
+                + "I.Distribucion Uniforme\n" + "J.Distribucion de Poisson" + "\nK. Moneda");
             sel = scan.next().charAt(0);
         
             
             switch(sel){
-            case '1':
+            case 'A':
                 GCMix();
                 break;
-            case '2':
+            case 'B':
                 GCMult();
                 break;
-            case '3':
+            case 'C':
                 GRndm();
                 break;
-            case '4':
+            case 'D':
                 PEstadistica();
                 break;
-            case '5':
+            case 'E':
                 PKolomogorov();
                 break;
-            case '6':
+            case 'F':
                 PFrecuencias();
                 break;
-            case '7':
+            case 'G':
                 Series();
                 break;
-            case '8':
+            case 'H':
                 DExponencial();
                 break;
-            case '9':
+            case 'I':
                 DUniforme();
                 break;
-            case '0':
+            case 'J':
                 DPoisson();
                 break;
-            case 'M':
+            case 'K':
+                Moneda();
+                break;
+            case 'a':
+                GCMix();
+                break;
+            case 'b':
+                GCMult();
+                break;
+            case 'c':
+                GRndm();
+                break;
+            case 'd':
+                PEstadistica();
+                break;
+            case 'e':
+                PKolomogorov();
+                break;
+            case 'f':
+                PFrecuencias();
+                break;
+            case 'g':
+                Series();
+                break;
+            case 'h':
+                DExponencial();
+                break;
+            case 'i':
+                DUniforme();
+                break;
+            case 'j':
+                DPoisson();
+                break;
+            case 'k':
                 Moneda();
                 break;
             default:
@@ -260,7 +295,7 @@ public class ModeladoYSimulacion {
             if(Desktop.isDesktopSupported()){
                 Desktop.getDesktop().browse(uri);
             }
-        }catch(Exception e){
+        }catch(URISyntaxException | IOException e){
             System.out.println(e);
             System.out.println("Error");
         }
