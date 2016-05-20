@@ -1,5 +1,8 @@
 package modeladoysimulacion;
 
+import java.awt.Desktop;
+import java.net.URI;
+import java.net.URL;
 import java.util.Scanner;
 import modeladoysimulacion.MedioCurso.Distribuciones.Exponencial;
 import modeladoysimulacion.MedioCurso.Distribuciones.Poisson;
@@ -17,7 +20,6 @@ public class ModeladoYSimulacion {
         char sel = '0', bi = 0;
         char cont;
 
-        
         Scanner scan = new Scanner(System.in);
         do{
             do{
@@ -60,6 +62,9 @@ public class ModeladoYSimulacion {
                 break;
             case '0':
                 DPoisson();
+                break;
+            case 'M':
+                Moneda();
                 break;
             default:
                 System.out.println("Opcion no valda.");
@@ -245,7 +250,20 @@ public class ModeladoYSimulacion {
             System.out.println("Error");
             
         }
-        
-        
     }
+    
+    private static void Moneda(){
+        System.out.println("Abriendo Problema de la Moneda en su Navegador Predeterminado");
+        try{
+            URL url = (new java.io.File("src/modeladoysimulacion/Moneda/moneda.html")).toURI().toURL();
+            URI uri = url.toURI();
+            if(Desktop.isDesktopSupported()){
+                Desktop.getDesktop().browse(uri);
+            }
+        }catch(Exception e){
+            System.out.println(e);
+            System.out.println("Error");
+        }
+    }
+    
 }

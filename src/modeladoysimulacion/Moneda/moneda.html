@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <title>Simulacion Moneda</title>
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <script src="script/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript">
+        var canti, apuesta, meta, sim;
+        var stringsth = ["Numero de corrida", "Cantidad que se tiene antes del volado", "Apuesta", "Numero Aleatorio", "Se gano el volado?",
+                         "Cantidad que se tiene despues del volado", "Se llego a la meta?"];
+
+        $(document).ready(function () {
+            $("#resDIV").hide();
+            $("#resDIV2").hide();
+        });
+
+        function solve() {
+            $("#here_table").empty();
+
+            canti = parseInt($("#canti").val());
+            apuesta = parseInt($("#apuesta").val());
+            meta = parseInt($("#meta").val());
+            sim = parseInt($("#sim").val());
+
+            var table = $('<table></table>').addClass('res');
+
+            var nc = 1;
+            var cantA = canti;
+            var ap = apuesta;
+            var na = 1;
+            var ganoB = true;
+            var gano = "";
+            var cantD = canti;
+            var Lmeta = "-";
+            var LmetaB = false;
+            var vmeta = 0;
+            var vquiebra = 0;
+            var probGanar = 0;
+            var probGanarP = 0;
+
+            if (sim > 1) {
+                $("#resDIV").show();
+                $("#resDIV2").show();
+                var row = $('<tr></tr>').addClass('bar');
+                for (j = 0; j <= stringsth.length; j++) {
+                    var ths = $('<th></th>').text(stringsth[j]);
+                    row.append(ths);
+                }
+
+                table.append(row);
+            } else {
+                alert("Llene todos los datos.");
+                return;
+            }
+
+
+
+            for (i = 0; i < sim; i++) {
+
+                LmetaB = false;
+                Lmeta = "-";
+                cantA = cantD;
+
+                if (na <= .5) {
+                    ap = apuesta;
+                }
+
+                if (!ganoB) {
+                    ap = ap * 2;
+                    if (ap > cantA) {
+                        ap = cantA;
+                    }
+                }
+
+                ganoB = false;
+                gano = "no";
+
+                var row = $('<tr></tr>').addClass('bar');
+
+                na = Math.random();
+
+                if (na <= .5) {
+                    ganoB = true;
+                    gano = "si";
+                    cantD = cantA + ap;
+                } else {
+                    cantD = cantA - ap;
+                }
+
+                if (cantD == meta || cantD <= 0) {
+                    LmetaB = true;
+                    if (cantD == meta) {
+                        Lmeta = "META";
+                        vmeta++;
+                    } else {
+                        if (cantD <= 0) {
+                            Lmeta = "QUIEBRA";
+                            vquiebra++;
+                        }
+                    }
+                }
+
+                if (i == (sim - 1) && Lmeta == "-") {
+                    Lmeta = "CORRIDA NULA"
+                }
+
+                var linea = [nc, cantA, ap, na, gano, cantD, Lmeta];
+
+                for (k = 0; k <= 6; k++) {
+                    rnd = Math.random();
+                    var tds = $('<td></td>').text(linea[k]);
+                    row.append(tds);
+                }
+
+                table.append(row);
+
+                if (LmetaB) {
+                    nc++;
+                    cantA = cantD = canti;
+                    ap = apuesta;
+                    ganoB = true;
+                }
+                $('#here_table').append(table);
+
+                if (i == (sim - 1)) {
+                    nc--;
+                }
+
+            }
+
+            probGanar = vmeta / nc;
+            probGanarP = probGanar * 100;
+
+            $("#resp1").html("Probabilidad(decimal): " + probGanar + " Probabilidad(porcentaje): " + probGanarP + "%");
+
+            $("#resp2").html("Num. de metas: " + vmeta + " Num. de quiebras: " + vquiebra);
+        }
+    </script>
+</head>
+
+<body>
+    <div id="mainCont" style="text-align:center;">
+        <h1>Problema de la moneda:</h1>
+
+
+        <table class="center">
+            <th colspan=2 style="text-align: center;">Indique lo siguiente para realizar la simulacion:</th>
+            <tr>
+                <td>Cantidad inicial:</td>
+                <td>
+                    <input type="number" id="canti" name="canti" class="w3-input">
+                </td>
+            </tr>
+            <tr>
+                <td>Apuesta:</td>
+                <td>
+                    <input type="number" id="apuesta" name="apuesta" class="w3-input">
+                </td>
+            </tr>
+            <tr>
+                <td>Meta:</td>
+                <td>
+                    <input type="number" id="meta" name="meta" class="w3-input">
+                </td>
+            </tr>
+            <tr>
+                <td>Num de sim:</td>
+                <td>
+                    <input type="number" id="sim" name="sim" class="w3-input">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center;">
+                    <br>
+                    <input type="button" value="Resultados" class="w3-btn w3-light-grey" onclick="solve()" />
+                </td>
+            </tr>
+        </table>
+
+
+        <div id="resDIV">
+            <br>
+            <h3>Resultados</h3>
+        </div>
+        <div id="here_table"></div>
+
+        <div id="resDIV2" style="margin-left:10%;text-align: left !important;">
+            <br>
+            <h3 style="text-align: left !important;">Preguntas:</h3>
+            <p class="preg">Cual es la probabilidad de llegar a la meta?</p>
+            <div id="resp1" class="resp"></div>
+            <br>
+            <p class="preg">Cuantas veces se llego a la meta y cuantas veces a la quiebra?</p>
+            <div id="resp2" class="resp"></div>
+            <br>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
