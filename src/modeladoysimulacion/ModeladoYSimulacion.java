@@ -26,11 +26,11 @@ public class ModeladoYSimulacion {
         do{
             do{
             bi = 0;
-            System.out.println("Que tipo de generador deseas:\n(Presione el num que desea y de enter)\n"
-                + "A.Generador Congruencial Mixto\n" + "B.Generador Congruencial Multiplicativo\n"
-                + "C.Generador Alternativo(propio)\n" + "D.Prueba Estadisitcas\n"+"E.Prueba de Kolmogorov-Smirnov\n"
-                + "F.Prueba de Frecuencias\n" + "G.Series\n" + "H.Distribucion Exponencial\n"
-                + "I.Distribucion Uniforme\n" + "J.Distribucion de Poisson" + "\nK. Moneda");
+            System.out.println("\n\nQue tipo de generador deseas:\nTeclee la opcion que desea y de enter o teclee 'Q' para salir\n\n\t"
+                + "A.Generador Congruencial Mixto\n\t" + "B.Generador Congruencial Multiplicativo\n\t"
+                + "C.Generador Alternativo(propio)\n\t" + "D.Prueba Estadisitcas\n\t"+"E.Prueba de Kolmogorov-Smirnov\n\t"
+                + "F.Prueba de Frecuencias\n\t" + "G.Series\n\t" + "H.Distribucion Exponencial\n\t"
+                + "I.Distribucion Uniforme\n\t" + "J.Distribucion de Poisson" + "\n\tK. Moneda" + "\n\tL. Proyecto");
             sel = scan.next().charAt(0);
         
             
@@ -68,6 +68,9 @@ public class ModeladoYSimulacion {
             case 'K':
                 Moneda();
                 break;
+            case 'L':
+                Proyecto();
+                break;
             case 'a':
                 GCMix();
                 break;
@@ -101,12 +104,22 @@ public class ModeladoYSimulacion {
             case 'k':
                 Moneda();
                 break;
+            case 'l':
+                Proyecto();
+                break;
+            case 'q':
+                bi = 67;
+                break;
+
+            case 'Q':
+                bi = 68;
+                break;
             default:
                 System.out.println("Opcion no valda.");
                 bi = 1;
         }}while(bi == 1);
         
-            System.out.println("Deseas generar de nuevo?\n1.Si\n2.No");
+            System.out.println("\n\n\tVolver al Menú Principal o Salir?\n\t1.Menu\n\t2.Salir");
 
             cont = scan.next().charAt(0);
 
@@ -116,20 +129,39 @@ public class ModeladoYSimulacion {
 
     private static void GCMix() {
         Scanner scan = new Scanner(System.in);
+        boolean go = false;
         try {
-            System.out.print("Ingresa A: ");
+            System.out.print("Ingresa Constante Multiplicativa (a): ");
             int a = scan.nextInt();
-            System.out.print("Ingresa X0: ");
+            System.out.print("Ingresa la semilla inicial (X0): ");
             int x = scan.nextInt();
-            System.out.print("Ingresa C: ");
+            System.out.print("Ingresa la constante aditiva (c): ");
             int c = scan.nextInt();
-            System.out.print("Ingresa M: ");
+            System.out.print("Ingresa el Modulo o divisor cte. (m): ");
             int m = scan.nextInt();
-            GeneradorCongruencialMixto mix1 = new GeneradorCongruencialMixto(a, x, c, m);
-            mix1.makeThisHappen();
-            System.out.println(mix1.letsPrintThisShit());
+            if (m > a && m > x && m > c && x > 0 && a > 0 && c > 0) {
+                
+                GeneradorCongruencialMixto mix1 = new GeneradorCongruencialMixto(a, x, c, m);
+                System.out.println("\n\nFormula: Xn+1 = (aXo+C)\n");
+                System.out.println("Valores Asignados: \n");
+                
+                String valorA = "\na = " + mix1.getA();
+                String valorX0 = "\nXo = " + mix1.getX0();
+                String valorC = "\nc = " + mix1.getC();
+                String valorM = "\nm = " + mix1.getM();
+                
+                mix1.makeThisHappen();
+                System.out.println(mix1.letsPrintThisShit());
+            }else{
+                String toPrint = "\n\n";
+                toPrint += "\tRecuerda las condiciones:\n\n";
+                toPrint += "\tm debe ser mayor a los valores de: a, x0, c\n";
+                toPrint += "\tx0, a y c deben de ser mayores a 0";
+                System.out.println(toPrint);
+            }
+            
         } catch (Exception e) {
-            System.out.println("Error" + e);
+            System.out.println("Error " + e);
             return;
         }
 
@@ -137,14 +169,30 @@ public class ModeladoYSimulacion {
 
     private static void GCMult() {
         Scanner scan = new Scanner(System.in);
+        boolean go = false;
+        
         try {
-            System.out.print("Ingresa A: ");
+            
+            System.out.print("Ingresa la cte. multiplicativa (a): ");
             int a = scan.nextInt();
-            System.out.print("Ingresa X0: ");
+            System.out.print("Ingresa la semilla inicial (X0): ");
             int x = scan.nextInt();
-            System.out.print("Ingresa M: ");
+            System.out.print("Ingresa el modulo o divisor (m): ");
             int m = scan.nextInt();
-            new GCMult(a, x, m).init();
+            if (m > a && m > x && x > 0 && a > 0) {
+                System.out.println("Valores Asignados: \n");
+                String valorA = "\na = " + a;
+                String valorX0 = "\nXo = " + x;
+                String valorM = "\nm = " + m + "\n";
+                new GCMult(a, x, m).init();
+            }else{
+                String toPrint = "\n\n";
+                toPrint += "\tRecuerda las condiciones:\n\n";
+                toPrint += "\tm debe ser mayor a los valores de: a, x0\n";
+                toPrint += "\tx0 y a deben de ser mayores a 0";
+                System.out.println(toPrint);
+            }
+            
         } catch (Exception e) {
             System.out.println("Error");
             return;
@@ -290,15 +338,28 @@ public class ModeladoYSimulacion {
     private static void Moneda(){
         System.out.println("Abriendo Problema de la Moneda en su Navegador Predeterminado");
         try{
-            URL url = (new java.io.File("src/modeladoysimulacion/Moneda/moneda.html")).toURI().toURL();
+            URL url = (new java.io.File("volado/moneda.html")).toURI().toURL();
             URI uri = url.toURI();
             if(Desktop.isDesktopSupported()){
                 Desktop.getDesktop().browse(uri);
             }
         }catch(URISyntaxException | IOException e){
             System.out.println(e);
-            System.out.println("Error");
+            System.out.println("Error, intenta abrir la pagina manualmente");
         }
     }
-    
+
+    private static void Proyecto(){
+        System.out.println("Abriendo Problema de la Moneda en su Navegador Predeterminado");
+        try{
+            URL url = (new java.io.File("volado/Proyecto.html")).toURI().toURL();
+            URI uri = url.toURI();
+            if(Desktop.isDesktopSupported()){
+                Desktop.getDesktop().browse(uri);
+            }
+        }catch(URISyntaxException | IOException e){
+            System.out.println(e);
+            System.out.println("Error, intenta abrir la pagina manualmente");
+        }
+    }    
 }

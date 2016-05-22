@@ -4,6 +4,7 @@ import static java.lang.Math.pow;
 import ownUtils.Fraction;
 
 public class GCMult {
+
     int a, x, m, pe;
 
     public GCMult(int a, int x, int m) {
@@ -11,96 +12,102 @@ public class GCMult {
         this.x = x;
         this.m = m;
     }
-    
-    public void init(){
+
+    public void init() {
         pe = getPE(m);
-        if(cal()){
+        if (cal()) {
             System.out.println("(Por lo tanto)Generador Confiable");
-        }else{
+        } else {
             System.out.println("(Por lo tanto)Generador No Confiable");
         }
     }
-    
-    public boolean bord(int m){
+
+    public boolean bord(int m) {
         Integer m1 = m;
         String ms = m1.toString();
         char n1 = ' ';
         char n2 = ' ';
         char n3 = ' ';
-        try{
+        try {
             n1 = ms.charAt(0);
             n2 = ms.charAt(1);
             n3 = ms.charAt(2);
-        }catch(StringIndexOutOfBoundsException e){
+        } catch (StringIndexOutOfBoundsException e) {
             //System.out.println(e);
         }
-        if(n1 == '1'){
-            if(n2 == '0' || n2 == ' '){
-                if(n3 == '0' || n3 == ' '){
+        if (n1 == '1') {
+            if (n2 == '0' || n2 == ' ') {
+                if (n3 == '0' || n3 == ' ') {
                     return true;
                 }
-        }
+            }
         }
         return false;
     }
-    
-    public int getExp(int m){
-        int exp=0;
-        if(m != 1){
-            while(m != 1){
-                m = m/10;
+
+    public int getExp(int m) {
+        int exp = 0;
+        if (m != 1) {
+            while (m != 1) {
+                m = m / 10;
                 exp++;
             }
         }
         return exp;
     }
-    
-    private int getPE(int m){
+
+    private int getPE(int m) {
         int pe;
-        if(bord(m) == false){
-            pe = m/4;
-        }else{
+        if (bord(m) == false) {
+            pe = m / 4;
+
+            System.out.println("\n\nModulo proporcionado (m): Binario\n"
+                    + "Periodo Esperado = m / 4 = " + pe + "\n\n");
+        } else {
+            
             int exp = getExp(m);
-            switch(exp){
-                case 1: 
+            switch (exp) {
+                case 1:
                     pe = 4;
                     break;
                 case 2:
                     pe = 20;
                     break;
-                case 3: 
+                case 3:
                     pe = 100;
                     break;
-                case 4: 
+                case 4:
                     pe = 500;
                     break;
                 default:
                     exp -= 2;
-                    pe = (int)(5*pow(10,exp));
+                    pe = (int) (5 * pow(10, exp));
             }
+            System.out.println("\n\nModulo proporcionado (m): Decimal\n"
+                    + "Periodo Esperado = " + pe + "\n\n");
         }
         return pe;
     }
-    
-    private boolean cal(){
+
+    private boolean cal() {
         boolean res;
         int i = 0;
         int newX = x;
         System.out.println("n \t Xo \t aXomodm \t Xn+1 \tNum. Rectangulares");
-        do{
+        do {
             i++;
             newX = new line(i, newX).lineCal(a);
-        }while(x != newX && !(pe == i));
-        if(x == newX && pe == i){
+        } while (x != newX && !(pe == i));
+        if (x == newX && pe == i) {
             res = true;
-        }else{
+        } else {
             res = false;
         }
         return res;
     }
-    
-    
-    public class line{
+
+    public class line {
+
         int n, x0, x, funint;
         double recD;
         String fun;
@@ -110,19 +117,19 @@ public class GCMult {
             this.n = n;
             this.x0 = x0;
         }
-        
-        private int lineCal(int a){
-            this.x =(a*x0)%m;
+
+        private int lineCal(int a) {
+            this.x = (a * x0) % m;
             this.funint = (a * x0) / m;
-            this.fun = funint +"+ ("+x+"/"+m + ")";
-            this.recD = (double)x/m;
+            this.fun = funint + "+ (" + x + "/" + m + ")";
+            this.recD = (double) x / m;
             print();
             return x;
         }
-        
-        public void print(){
-            System.out.println(n+"\t "+x0+"\t "+fun+"\t  "+x+"\t "+recD);
+
+        public void print() {
+            System.out.println(n + "\t " + x0 + "\t " + fun + "\t  " + x + "\t " + recD);
         }
-        
+
     }
 }

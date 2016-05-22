@@ -20,6 +20,38 @@ public class GeneradorCongruencialMixto {
      */
     int xn1, a, x0, c, m;
     int n; //iteraciones
+
+    public int getA() {
+        return a;
+    }
+
+    public void setA(int a) {
+        this.a = a;
+    }
+
+    public int getX0() {
+        return x0;
+    }
+
+    public void setX0(int x0) {
+        this.x0 = x0;
+    }
+
+    public int getC() {
+        return c;
+    }
+
+    public void setC(int c) {
+        this.c = c;
+    }
+
+    public int getM() {
+        return m;
+    }
+
+    public void setM(int m) {
+        this.m = m;
+    }
     boolean isTrustable;
     double partDivided;
     Fraction currentFraction, lastFraction, auxFraction;
