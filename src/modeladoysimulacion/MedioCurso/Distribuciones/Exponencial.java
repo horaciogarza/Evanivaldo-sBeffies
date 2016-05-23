@@ -29,11 +29,11 @@ public class Exponencial {
         for(int i=0;i<numR;i++){
             x[i] = -((double)1/(double)lambda)*Math.log(r[i]);
             xSum = x[i]+xSum;
-            System.out.println("X["+(i+1)+"]="+x[i]);
+            System.out.println("X["+(i+1)+"]=-1/3 ln("+r[i]+")="+x[i]);
         }
         xProm = xSum/numR;
         
-        System.out.println("X Total: "+xSum);
-        System.out.println("X Prom: "+xProm);
+        System.out.println("\t X Total: "+xSum);
+        System.out.println("\t X Prom: "+xProm);
     }
 }
