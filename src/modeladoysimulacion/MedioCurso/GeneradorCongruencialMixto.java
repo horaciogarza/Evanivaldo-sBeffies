@@ -95,7 +95,7 @@ public class GeneradorCongruencialMixto {
             String fractionAdded = ((Integer) ((a * x0 + c)/ m)).toString();
             
             
-            setValuesOnArray(i, m, ((Integer) n).toString(), ((Integer) x0).toString(), fractionAdded + " " + currentFraction.toString(), ((Integer) xn1).toString(), ((Double) rectNumb).toString());
+            setValuesOnArray(i, m, ((Integer) n).toString(), ((Integer) x0).toString(), fractionAdded + "+ " + currentFraction.toString(), ((Integer) xn1).toString(), ((Double) rectNumb).toString());
             x0 = xn1;
             
 
@@ -126,10 +126,20 @@ public class GeneradorCongruencialMixto {
                    break;
                    
                 }
+                
+                if(x0<=9){
                 returningTheArray += s2 + "\t";
                 if (ajax == 2) {
                     returningTheArray += "\t";
                     
+                }
+                }
+                
+                else {
+                returningTheArray += s2 + "      ";
+                if (ajax == 2) {
+                    returningTheArray += "\t";
+                }    
                 }
                 
                 ajax++;
