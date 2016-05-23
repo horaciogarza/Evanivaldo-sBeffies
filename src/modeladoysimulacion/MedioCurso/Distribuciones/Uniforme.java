@@ -31,11 +31,11 @@ public class Uniforme {
         for(int i=0;i<numR;i++){
             x[i] = a+(b-a)*r[i];
             xSum = x[i]+xSum;
-            System.out.println("X["+(i+1)+"]="+x[i]);
+            System.out.println("X["+(i+1)+"]="+a+"+("+b+"-"+a+")("+r[i]+")"+"="+x[i]);
         }
         xProm = xSum/numR;
         
-        System.out.println("X Total: "+xSum);
-        System.out.println("X Prom: "+xProm);
+        System.out.println("\tX Total: "+xSum);
+        System.out.println("\tX Prom: "+xProm);
     }
 }

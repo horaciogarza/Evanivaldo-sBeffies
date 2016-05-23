@@ -17,13 +17,18 @@ public class Estadisticas {
         double[] recs = GRandom.getRndL(n);
         double sum = 0;
         for(int i=1;i<n+1;i++){
+            System.out.println(recs[i-1]);
             sum+=recs[i-1];
         }
+        System.out.println("\nResultados:");
+        System.out.println("Σx = "+sum);
         double prom = sum/n;
+        System.out.println("x̅ = "+prom);
         z0 = ((prom-.5)*(Math.sqrt(n)))/(Math.sqrt(1.0/12.0));
         if(z0<0){
             z0=z0*-1;
         }
+        System.out.println("Z0 = |("+prom+"-"+.5+")*("+Math.sqrt(n)+")/("+Math.sqrt(1.0/12.0)+")| = "+z0);
     }
     
     public double getZ0(){
