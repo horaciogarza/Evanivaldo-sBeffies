@@ -222,15 +222,17 @@ public class ModeladoYSimulacion {
         Scanner scan = new Scanner(System.in);
         int n;
         float z;
-        try {
-            System.out.println("Ingrese cantidad de numeros Rectangulares(N)?");
+
+        try{
+            System.out.print("Ingrese cantidad de numeros Rectangulares(N) a generar: ");
             n = scan.nextInt();
-            System.out.println("Ingrese El valor de Z a comparar?");
+            System.out.print("Ingrese El valor de Z a comparar: ");
             z = scan.nextFloat();
         } catch (Exception e) {
             System.out.println("Error");
             return;
         }
+        System.out.println("");
         new Estadisticas(n).compareZ(z);
     }
 
@@ -238,15 +240,17 @@ public class ModeladoYSimulacion {
         Scanner scan = new Scanner(System.in);
         int n;
         float d;
-        try {
-            System.out.println("Ingrese cantidad de numeros Rectangulares(N)?");
+
+        try{
+            System.out.print("Ingrese cantidad de numeros Rectangulares(N) a generar: ");
             n = scan.nextInt();
-            System.out.println("Ingrese El valor de D a comparar?");
+            System.out.print("Ingrese El valor de D a comparar: ");
             d = scan.nextFloat();
         } catch (Exception e) {
             System.out.println("Error");
             return;
         }
+        System.out.println("");
         new KolmogorovSmirnov(n).print().compareD(d);
     }
 
@@ -255,34 +259,39 @@ public class ModeladoYSimulacion {
         int nr;
         int n;
         float x;
-        try {
-            System.out.println("Ingrese el valor de n.");
-            n = scan.nextInt();
-            System.out.println("Ingrese cantidad de numeros Rectangulares(N)?");
+
+        try{
+            System.out.print("Ingrese cantidad de numeros Rectangulares(N) a generar: ");
             nr = scan.nextInt();
-            System.out.println("Ingrese El valor de x^2 a comparar?");
+            System.out.print("Ingrese el valor de n(Cantidad de Intervalos): ");
+            n = scan.nextInt();
+            System.out.print("Ingrese El valor de x^2 a comparar: ");
             x = scan.nextFloat();
         } catch (Exception e) {
             System.out.println("Error");
             return;
         }
-        new Frecuencias(n, nr).compareX(x);
+        System.out.println("");
+        new Frecuencias(n,nr).compareX(x);
     }
 
     private static void DExponencial() {
         Scanner scan = new Scanner(System.in);
         int n;
         int lambda;
-        try {
-            System.out.println("Ingrese El valor de λ");
+
+        try{
+            System.out.print("Ingrese El valor de λ(Media estadistica de la variable): ");
             lambda = scan.nextInt();
-            System.out.println("Ingrese cantidad de numeros Rectangulares(N)?");
+            System.out.print("Ingrese cantidad de numeros Rectangulares(N) a generar: ");
             n = scan.nextInt();
         } catch (Exception e) {
             System.out.println("Error");
             return;
         }
-        new Exponencial(lambda, n);
+
+        System.out.println("");
+        new Exponencial(lambda,n);
     }
 
     private static void DUniforme() {
@@ -290,30 +299,35 @@ public class ModeladoYSimulacion {
         int n;
         int a;
         int b;
-        try {
-            System.out.println("Ingrese El valor de a");
+
+        try{
+            System.out.print("Ingrese El valor de a(Valor minimo de la Variable): ");
             a = scan.nextInt();
-            System.out.println("Ingrese El valor de b");
+            System.out.print("Ingrese El valor de b(Valor Maximo de la Variable): ");
             b = scan.nextInt();
-            System.out.println("Ingrese cantidad de numeros Rectangulares(N)?");
+            System.out.print("Ingrese cantidad de numeros Rectangulares(N) a generar: ");
             n = scan.nextInt();
         } catch (Exception e) {
             System.out.println("Error");
             return;
         }
-        new Uniforme(a, b, n);
+
+        System.out.println("");
+        new Uniforme(a,b,n);
     }
 
     private static void DPoisson() {
         Scanner scan = new Scanner(System.in);
         int lambda;
-        try {
-            System.out.println("Ingrese El valor de λ");
+
+        try{
+            System.out.print("Ingrese El valor de λ(Media estadisitca de la variable): ");
             lambda = scan.nextInt();
         } catch (Exception e) {
             System.out.println("Error");
             return;
         }
+        System.out.println("");
         new Poisson(lambda).print();
     }
 

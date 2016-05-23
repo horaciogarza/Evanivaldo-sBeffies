@@ -71,7 +71,7 @@ public class Poisson {
     }
     
     public void print(){
-        System.out.println("R \t Num \t Rango");
+        System.out.println("\nR \t Num \t Rango");
         int sum =0;
         for(int i=0;i<lambda;i++){
             System.out.println("R"+i+"\t"+r[i]+"\t "+rx[i]);
