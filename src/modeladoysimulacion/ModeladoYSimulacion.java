@@ -12,6 +12,7 @@ import modeladoysimulacion.MedioCurso.Distribuciones.Uniforme;
 import modeladoysimulacion.MedioCurso.GCMult;
 import modeladoysimulacion.MedioCurso.GRandom;
 import modeladoysimulacion.MedioCurso.GeneradorCongruencialMixto;
+
 import modeladoysimulacion.MedioCurso.Pruebas.*;
 
 public class ModeladoYSimulacion {
