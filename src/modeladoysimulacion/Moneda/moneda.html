@@ -17,7 +17,17 @@
             $("#resDIV2").hide();
         });
 
-        function solve() {
+        function solveC() {
+            op = $("#myselect").val();
+            if (op == "1") {
+                solve1();
+            } else {
+                solve2();
+            }
+
+        }
+
+        function solve1() {
             $("#here_table").empty();
 
             canti = parseInt($("#canti").val());
@@ -110,7 +120,6 @@
                 var linea = [nc, cantA, ap, na, gano, cantD, Lmeta];
 
                 for (k = 0; k <= 6; k++) {
-                    rnd = Math.random();
                     var tds = $('<td></td>').text(linea[k]);
                     row.append(tds);
                 }
@@ -137,6 +146,121 @@
             $("#resp1").html("Probabilidad(decimal): " + probGanar + " Probabilidad(porcentaje): " + probGanarP + "%");
 
             $("#resp2").html("Num. de metas: " + vmeta + " Num. de quiebras: " + vquiebra);
+
+            $("#resDIV").show();
+            $("#resDIV2").show();
+        }
+
+        function solve2() {
+            $("#here_table").empty();
+
+            canti = parseInt($("#canti").val());
+            apuesta = parseInt($("#apuesta").val());
+            meta = parseInt($("#meta").val());
+            sim = parseInt($("#sim").val());
+
+            var table = $('<table></table>').addClass('res');
+
+            var nc = 0;
+            var cantA = canti;
+            var ap = apuesta;
+            var na = 1;
+            var ganoB = true;
+            var gano = "";
+            var cantD = canti;
+            var Lmeta = "-";
+            var LmetaB = false;
+            var vmeta = 0;
+            var vquiebra = 0;
+            var probGanar = 0;
+            var probGanarP = 0;
+
+            if (sim > 1) {
+                $("#resDIV").show();
+                var row = $('<tr></tr>').addClass('bar');
+                for (j = 0; j <= stringsth.length; j++) {
+                    var ths = $('<th></th>').text(stringsth[j]);
+                    row.append(ths);
+                }
+
+                table.append(row);
+            } else {
+                alert("Llene todos los datos.");
+                return;
+            }
+
+            do {
+                LmetaB = false;
+                Lmeta = "-";
+                cantA = cantD;
+
+                if (na <= .5) {
+                    ap = apuesta;
+                }
+
+                if (!ganoB) {
+                    ap = ap * 2;
+                    if (ap > cantA) {
+                        ap = cantA;
+                    }
+                }
+
+                ganoB = false;
+                gano = "no";
+
+                var row = $('<tr></tr>').addClass('bar');
+
+                na = Math.random();
+
+                if (na <= .5) {
+                    ganoB = true;
+                    gano = "si";
+                    cantD = cantA + ap;
+                } else {
+                    cantD = cantA - ap;
+                }
+
+                if (cantD == meta || cantD <= 0) {
+                    LmetaB = true;
+                    if (cantD == meta) {
+                        Lmeta = "META";
+                        vmeta++;
+                    } else {
+                        if (cantD <= 0) {
+                            Lmeta = "QUIEBRA";
+                            vquiebra++;
+                        }
+                    }
+                }
+
+                var linea = [nc, cantA, ap, na, gano, cantD, Lmeta];
+
+                for (k = 0; k <= 6; k++) {
+                    var tds = $('<td></td>').text(linea[k]);
+                    row.append(tds);
+                }
+
+                table.append(row);
+
+                if (LmetaB) {
+                    nc++;
+                    cantA = cantD = canti;
+                    ap = apuesta;
+                    ganoB = true;
+                }
+                $('#here_table').append(table);
+
+            } while (nc != sim)
+
+            probGanar = vmeta / nc;
+            probGanarP = probGanar * 100;
+
+            $("#resp1").html("Probabilidad(decimal): " + probGanar + " Probabilidad(porcentaje): " + probGanarP + "%");
+
+            $("#resp2").html("Num. de metas: " + vmeta + " Num. de quiebras: " + vquiebra);
+
+            $("#resDIV").show();
+            $("#resDIV2").show();
         }
     </script>
 </head>
@@ -167,7 +291,12 @@
                 </td>
             </tr>
             <tr>
-                <td>Num de sim:</td>
+                <td>
+                    <select id="myselect">
+                        <option value="1">Num. Rectangulares</option>
+                        <option value="2">Num. de Corridas</option>
+                    </select>
+                </td>
                 <td>
                     <input type="number" id="sim" name="sim" class="w3-input">
                 </td>
@@ -175,7 +304,7 @@
             <tr>
                 <td colspan="2" style="text-align:center;">
                     <br>
-                    <input type="button" value="Resultados" class="w3-btn w3-light-grey" onclick="solve()" />
+                    <input type="button" value="Resultados" class="w3-btn w3-light-grey" onclick="solveC()" />
                 </td>
             </tr>
         </table>
