@@ -81,9 +81,9 @@ public class Poisson {
                 return;
             }
             if (ra < r[x] && rb >= r[x]) {
+                j--;
                 rx[x] = j;
                 x++;
-                j--;
             } else {
                 ra = rb;
                 rb = ra + fxi.get(j);
