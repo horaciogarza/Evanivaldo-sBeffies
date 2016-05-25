@@ -161,7 +161,7 @@
 
             var table = $('<table></table>').addClass('res');
 
-            var nc = 0;
+            var nc = 1;
             var cantA = canti;
             var ap = apuesta;
             var na = 1;
@@ -250,9 +250,9 @@
                 }
                 $('#here_table').append(table);
 
-            } while (nc != sim)
+            } while (nc <= sim)
 
-            probGanar = vmeta / nc;
+            probGanar = vmeta / (nc - 1);
             probGanarP = probGanar * 100;
 
             $("#resp1").html("Probabilidad(decimal): " + probGanar + " Probabilidad(porcentaje): " + probGanarP + "%");
