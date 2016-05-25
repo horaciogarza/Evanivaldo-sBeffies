@@ -28,18 +28,28 @@ public class Poisson {
         fxiSumArray = new ArrayList();
         
         fxiSum = 0;
-        System.out.println("x\tf(Xi)\t\t\tF(Xi)");
+        System.out.println("\tx\tf(Xi)\t F(Xi)");
         while (fxiSum < .99997) {
             fxi.add(i, (Math.exp(-lambda) * Math.pow(lambda, i)) / (factorial(i)));
-            if (i == 0) {
+            /*if (i == 0) {
                 fxiSumArray.add(i, fxi.get(i));
             }else{
                 fxiSumArray.add(i, fxi.get(i) + fxiSumArray.get(i-1));
-            }
+            }*/
             
             fxiSum += fxi.get(i);
+            fxiSumArray.add(i, fxiSum);
             if (fxiSum < 1) {
-                System.out.println(i + "\t" + fxi.get(i) + "\t" + fxiSum);
+                //System.out.println(i + "\t" + fxi.get(i) + "\t" + fxiSum);
+                System.out.printf("\t%d\t%.5f\t %.5f\n", i ,fxi.get(i), fxiSum);
+            }
+            if(fxiSum > 1){
+                do{
+                    fxiSum -= .00001;
+                }while(fxiSum >=1);
+                //System.out.println(i+"\t"+fxi.get(i)+"\t"+fxiSum);
+                System.out.printf("\t%d\t%.5f\t %.5f\n", i ,fxi.get(i), fxiSum-.00001);
+                fxiSumArray.add(i, fxiSum);
             }
             i++;
         } 
@@ -84,16 +94,23 @@ public class Poisson {
     public void print() {
         int sum = 0;
 
-        System.out.print("\n\tSi R > 0.00000 y R \u2264 " + r[0] + "\t entonces x = 0");
+        //System.out.print("\n\tSi R > 0.00000 y R \u2264 " + fxiSumArray.get(0) + "\t entonces x = 0");
+        System.out.printf("\n\tSi R > 0.00000 y R \u2264 %.5f \t entonces x = 0",fxiSumArray.get(0));
         
-        if (r.length > 1) {
-            for (int i = 1; i < lambda-1; i++) {
-                System.out.printf("\n\tSi R > %.5f y R \u2264 %.5f \t entonces x =  %d",fxi.get(i), fxiSumArray.get(i), i);
-                sum += rx[i];
+        if (r.length >= 1) {
+            for (int i = 1; i < fxiSumArray.size()-1; i++) {
+                System.out.printf("\n\tSi R > %.5f y R \u2264 %.5f \t entonces x =  %d",fxiSumArray.get(i-1), (fxiSumArray.get(i)-.00001), i);
             }
         }
+        System.out.println("\n");
+        System.out.println("\n\t#Rectangulares \t Numumero \t Rango");  
+        for(int i=0;i<lambda;i++){  
+            System.out.println("\tR"+i+" \t\t "+r[i]+"\t "+rx[i]);  
+            sum += rx[i];  
+        }
 
-        System.out.println("\t  Total: " + sum);
+
+        System.out.println("\t\t\t\t  Total: " + sum);
     }
 
     private double factorial(int n) {
