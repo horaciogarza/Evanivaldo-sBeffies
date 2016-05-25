@@ -29,7 +29,7 @@ public class ModeladoYSimulacion {
                 bi = 0;
                 System.out.println("\n\nQue tipo de generador deseas:\nTeclee la opcion que desea y de enter o teclee 'Q' para salir\n\n\t"
                         + "A.Generador Congruencial Mixto\n\t" + "B.Generador Congruencial Multiplicativo\n\t"
-                        + "C.Generador Alternativo(propio)\n\t" + "D.Prueba Estadisitcas\n\t" + "E.Prueba de Kolmogorov-Smirnov\n\t"
+                        + "C.Generador Alternativo(propio)\n\t" + "D.Prueba de Promedio\n\t" + "E.Prueba de Kolmogorov-Smirnov\n\t"
                         + "F.Prueba de Frecuencias\n\t" + "G.Series\n\t" + "H.Distribucion Exponencial\n\t"
                         + "I.Distribucion Uniforme\n\t" + "J.Distribucion de Poisson" + "\n\tK. Moneda" + "\n\tL. Proyecto" );
                 sel = scan.next().charAt(0);
@@ -142,6 +142,7 @@ public class ModeladoYSimulacion {
             int m = scan.nextInt();
             if (m > a && m > x && m > c && x > 0 && a > 0 && c > 0) {
 
+                System.out.println("INICIO DE GENERADOR CONGRUENCIAL MIXTO");
                 GeneradorCongruencialMixto mix1 = new GeneradorCongruencialMixto(a, x, c, m);
                 System.out.println("\n\nFormula: Xn+1 = (aXo+C)\n");
                 System.out.println("Valores Asignados: \n");
@@ -187,6 +188,7 @@ public class ModeladoYSimulacion {
                 String valorM = "\nm = " + m + "\n";
                 new GCMult(a, x, m).init();
             } else {
+                System.out.println("INICIO DE GENERADOR CONGRUENCIAL MULTIPLICATIVO");
                 String toPrint = "\n\n";
                 toPrint += "\tRecuerda las condiciones:\n\n";
                 toPrint += "\tm debe ser mayor a los valores de: a, x0\n";
@@ -211,6 +213,7 @@ public class ModeladoYSimulacion {
             System.out.println("Error");
             return;
         }
+        System.out.println("INICIO DE GENERADOR DE NUMEROS RECTANGULARES\n");
         GRandom rA = new GRandom();
         double[] rndL = rA.getRndL(size);
         for (int i = 1; i < size + 1; i++) {
@@ -224,6 +227,7 @@ public class ModeladoYSimulacion {
         float z;
 
         try{
+            
             System.out.print("Ingrese cantidad de numeros Rectangulares(N) a generar: ");
             n = scan.nextInt();
             System.out.print("Ingrese El valor de Z a comparar: ");
@@ -232,7 +236,8 @@ public class ModeladoYSimulacion {
             System.out.println("Error");
             return;
         }
-        System.out.println("");
+        System.out.println("INICIO DE PRUEBA DE PROMEDIO\n");
+        System.out.println("\n\tFormula: Zo = |((!x - 0.5)\u221AN)/\u221A(1/12)");
         new Estadisticas(n).compareZ(z);
     }
 
@@ -250,7 +255,12 @@ public class ModeladoYSimulacion {
             System.out.println("Error");
             return;
         }
+        System.out.println("\nINICIO DE PRUEBA DE KOLMOGOROV");
         System.out.println("");
+        System.out.println("\tFormulas:\n F(Xi) = i/N, donde:\n\ti = Posicion del # Ordenado\n\tN = Cantidad"
+                + " de numeros\n\tF(Xi) = Distancia acumulada\n\n\tDn = MAX|F(Xi)-Xi|, donde:\n\tDn = Esta"
+                + "distico de Pruebas para cada numero rectangular\n\t"
+                + "F(Xi) = Distancia acumulada\n\tX = Valor del ordenado\n\n");
         new KolmogorovSmirnov(n).print().compareD(d);
     }
 
@@ -261,16 +271,22 @@ public class ModeladoYSimulacion {
         float x;
 
         try{
-            System.out.print("Ingrese cantidad de numeros Rectangulares(N) a generar: ");
+            System.out.print("Ingrese cantidad de numeros Rectangulares (N) a generar: ");
             nr = scan.nextInt();
-            System.out.print("Ingrese el valor de n(Cantidad de Intervalos): ");
+            System.out.print("Ingrese la Cantidad de Intervalos (n): ");
             n = scan.nextInt();
-            System.out.print("Ingrese El valor de x^2 a comparar: ");
+            System.out.print("Ingrese El valor estadistico a comparar(X\u00B2\u03B1, n-1): ");
             x = scan.nextFloat();
         } catch (Exception e) {
             System.out.println("Error");
             return;
         }
+        System.out.println("\nINICIO DE PRUEBAS DE FRECUENCIAS\n");
+        System.out.println("Formula: \n\n"
+                + "Xo\u00B2 = (1/FEi)\u03A3n, i=1 ((Foi - FEi)\u00B2), donde:\n\n"
+                + "FEi = Frecuencia Esperada\n"
+                + "Xo\u00B2 = Estadistico\n"
+                + "Foi = Frecuencia Real");
         System.out.println("");
         new Frecuencias(n,nr).compareX(x);
     }
@@ -289,6 +305,14 @@ public class ModeladoYSimulacion {
             System.out.println("Error");
             return;
         }
+        
+        System.out.println("\nINICIO DE DISTRIBUCION EXPONENCIAL/NO UNIFORME\n\n"
+                + "Formulas:\n"
+                + "- (1/λ)Ln R\n\n"
+                + "x = variable aleatoria a obtener\n"
+                + "λ = Media estadistica de la variable\n"
+                + "Ln = Funcion matematica que obtiene el logaritmo natural de un numero\n"
+                + "R = Numero rectangular previamente aprobado\n");
 
         System.out.println("");
         new Exponencial(lambda,n);
@@ -311,7 +335,17 @@ public class ModeladoYSimulacion {
             System.out.println("Error");
             return;
         }
-
+        
+        System.out.println("\nINICIO DE DISTRIBUCION UNIFORME\n");
+        System.out.println("Formulas:\n\t"
+                + "X = a + (b-a)R, donde:\n\t"
+                + "x = variable aleatoria a obtener\n\t"
+                + "a = valor minimo que puede tomar la variable\n\t"
+                + "b = valor maximo de la variable\n\t"
+                + "R = #Rectangular previamente aprobado\n");
+        
+        
+        
         System.out.println("");
         new Uniforme(a,b,n);
     }
@@ -328,6 +362,13 @@ public class ModeladoYSimulacion {
             return;
         }
         System.out.println("");
+        
+        System.out.println("\n\nINICIO DE DISTRIBUCION DE POISSON\n\n");
+        System.out.println("Formulas:\n"
+                + "f(xi) = ((\u03B5^\u039B)*\u039B^x)/x!, donde: \n\t"
+                + "\u03B5 = funcion exponencial"
+                + "\n\t\u039B = Media estadistica de la variable"
+                + "\n\tx = Valor supuesto de la variable aleatoria\n\n");
         new Poisson(lambda).print();
     }
 
@@ -338,15 +379,28 @@ public class ModeladoYSimulacion {
         do {
             try {
                
-                System.out.println("\n\tDime la cantidad de numeros rectangulares (N): ");
+                System.out.print("\n\tDime la cantidad de numeros rectangulares (N): ");
                 serie.setSize(lec.nextInt());
-                System.out.println("\tCantidad de sub-intervalos (n):  ");
+                System.out.print("\tCantidad de sub-intervalos (n):  ");
                 serie.setN(lec.nextInt());
-                System.out.println("\tIngresa el valor estadistico (X\u00B2\u03B1,n-1): ");
+                System.out.print("\tIngresa el valor estadistico a comparar (X\u00B2\u03B1,n-1): ");
                 serie.setAlpha(lec.nextFloat());
                 
                 if (serie.getSize() >= 2 && serie.getN() > 1 && serie.getAlpha() > 0) {
                     System.out.println("\n\nINICIO DE PRUEBA DE SERIES");
+                    System.out.println("\n\nFormulas:\n\n\t"
+                            + "FEi = (N-1)/n\u00B2, donde:\n\t"
+                            + "FEi = Frecuencia esperada\n\t"
+                            + "N = Cantidad de numeros rectangulares\n\t"
+                            + "n = Cantidad de subintervalos\n");
+                    System.out.println("\tX\u00B2 = (n\u00B2/N-1) n\u03A3i=0 n\u03A3j=0 ((Foi -FEi)\u00B2)"
+                            + ", donde:\n\t"
+                            + "X\u00B2 = Estadistico\n\t"
+                            + "n = Cantidad de subintervalos\n\t"
+                            + "N = Cantidad de numeros rectangulares\n\t"
+                            + "Foi = Frecuencia real\n\t"
+                            + "FEi = Frecuencia esperada");
+                    
                     serie = new Series(serie.getSize(), serie.getN(), serie.getAlpha());
                     serie.printRectNumbers();
                     serie.calculateFe();
@@ -356,7 +410,6 @@ public class ModeladoYSimulacion {
                     serie.printQuadrs();
                     serie.calculateResults();
                     serie.checkIfAccepted();
-                    
                     go = !go;
                 }else{
                     System.out.println("\n\tDame un valor(es) válido(s)");

@@ -20,15 +20,15 @@ public class Estadisticas {
             System.out.println(recs[i-1]);
             sum+=recs[i-1];
         }
-        System.out.println("\nResultados:");
-        System.out.println("Σx = "+sum);
+        System.out.println("\nResultados: ");
+        System.out.println("\tSuma: Σx = "+sum);
         double prom = sum/n;
-        System.out.println("x̅ = "+prom);
+        System.out.println("\tPromedio: x̅ = "+prom);
         z0 = ((prom-.5)*(Math.sqrt(n)))/(Math.sqrt(1.0/12.0));
         if(z0<0){
             z0=z0*-1;
         }
-        System.out.println("Z0 = |("+prom+"-"+.5+")*("+Math.sqrt(n)+")/("+Math.sqrt(1.0/12.0)+")| = "+z0);
+        System.out.println("\tZo = |("+prom+" - "+.5+") * ("+Math.sqrt(n)+")/("+Math.sqrt(1.0/12.0)+")| = "+z0);
     }
     
     public double getZ0(){
@@ -38,12 +38,16 @@ public class Estadisticas {
     public boolean compareZ(double z){
         System.out.println("");
         if(z0<z){
-            System.out.println(z0+"<"+z);
-            System.out.println("Los numeros son Aceptados");
+            System.out.println("\tZo < z");
+            System.out.println("\tSustituyendo...");
+            System.out.println("\t" +z0+" < "+z);
+            System.out.println("\tPor lo tanto, los numeros son aceptados");
             return true;
         }else{
-            System.out.println(z0+"<"+z);
-            System.out.println("Los numeros No son Aceptados");
+            System.out.println("\tZo < Z");
+            System.out.println("\tSustituyendo...");
+            System.out.println("\t" + z0 + " > "+z);
+            System.out.println("Por lo tanto, los numeros no son aceptados");
             return false;
         }
     }

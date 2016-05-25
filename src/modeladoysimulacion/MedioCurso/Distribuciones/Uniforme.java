@@ -5,6 +5,7 @@
  */
 package modeladoysimulacion.MedioCurso.Distribuciones;
 
+import java.util.Arrays;
 import modeladoysimulacion.MedioCurso.GRandom;
 
 /**
@@ -28,14 +29,20 @@ public class Uniforme {
         r = GRandom.getRndL(numR);
         x = new double[numR+1];
         xSum = 0;
+        
+        System.out.println("\nNumeros Aleatorios obtenidos:\n");
+        for (double d : r) {
+            System.out.println("\t" + d);
+        }
+        System.out.println("\n");
         for(int i=0;i<numR;i++){
             x[i] = a+(b-a)*r[i];
             xSum = x[i]+xSum;
-            System.out.println("X["+(i+1)+"]="+a+"+("+b+"-"+a+")("+r[i]+")"+"="+x[i]);
+            System.out.println("X["+(i+1)+"] = "+a+" + ( "+b+" - "+a+" )( "+r[i]+" ) "+" = "+x[i]);
         }
         xProm = xSum/numR;
         
-        System.out.println("\tX Total: "+xSum);
-        System.out.println("\tX Prom: "+xProm);
+        System.out.println("\n\tX Total = "+xSum);
+        System.out.println("\tX Prom = " + xSum + " / " + numR +" = " + xProm);
     }
 }
