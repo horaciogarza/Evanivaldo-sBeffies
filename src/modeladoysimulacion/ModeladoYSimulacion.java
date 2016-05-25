@@ -206,7 +206,7 @@ public class ModeladoYSimulacion {
     private static void GRndm() {
         Scanner scan = new Scanner(System.in);
         int size;
-        System.out.println("¿Cuántos numeros desea generar?(Tecleé el numero y presione enter)");
+        System.out.println("¿Cuantos numeros desea generar?(Teclee el numero y presione enter)");
         try {
             size = scan.nextInt();
         } catch (Exception e) {
@@ -426,7 +426,7 @@ public class ModeladoYSimulacion {
     private static void Moneda() {
         System.out.println("Abriendo Problema de la Moneda en su Navegador Predeterminado");
         try {
-            URL url = (new java.io.File("volado/moneda.html")).toURI().toURL();
+            URL url = (new java.io.File("htmlSource/volado.html")).toURI().toURL();
             URI uri = url.toURI();
             if (Desktop.isDesktopSupported()) {
                 Desktop.getDesktop().browse(uri);
@@ -440,7 +440,7 @@ public class ModeladoYSimulacion {
     private static void Proyecto() {
         System.out.println("Abriendo Problema de la Moneda en su Navegador Predeterminado");
         try {
-            URL url = (new java.io.File("volado/Proyecto.html")).toURI().toURL();
+            URL url = (new java.io.File("htmlSource/proyecto.html")).toURI().toURL();
             URI uri = url.toURI();
             if (Desktop.isDesktopSupported()) {
                 Desktop.getDesktop().browse(uri);
