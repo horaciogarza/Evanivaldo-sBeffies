@@ -26,6 +26,8 @@ public class Frecuencias {
         fei = (float)N/(float)n;
         recs = GRandom.getRndL(N);
         foi = new int[n+1];
+        
+        System.out.println("Numeros rectangulares: \n");
         for(int i=0;i<N;i++){
             int j = 1;
             if(recs[i]<((float)((float)j/(float)n))){
@@ -130,7 +132,7 @@ public class Frecuencias {
             System.out.printf("%.2f", fei);
             System.out.print("\t");
         }
-        System.out.print("\t="+N);
+        System.out.print("\t= "+N);
         System.out.print("\nFOi");
         for(int i=1; i<foi.length; i++){
             System.out.print("\t"+foi[i]);
@@ -142,13 +144,16 @@ public class Frecuencias {
     }
     
     public boolean compareX(double x2){
-        System.out.println("\nX0^2 = "+xo2);
-        System.out.println("\n"+xo2+"<"+x2);
+        System.out.println("\nX\u00B2o = " + xo2);
+        System.out.println("\nComparar X\u00B2o < X\u00B2\u03B1, n-1");
+        System.out.println("\n"+xo2+" < "+x2);
         if(xo2<x2){
-            System.out.println("Los numeros son Aceptados");
+            System.out.println("\n\tVerdadero," + xo2 + " < " + x2 + "; por lo tanto,\n\t"
+                    + "los numeros son aceptados");
             return true;
         }else{
-            System.out.println("Los numeros No son Aceptados");
+            System.out.println("\n\tFalso," + xo2 + " > " + x2 + "; por lo tanto,\n\t"
+                    + "los numeros no son aceptados");
             return false;
         }
     }

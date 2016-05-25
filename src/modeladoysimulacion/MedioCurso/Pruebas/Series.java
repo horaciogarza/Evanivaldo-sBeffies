@@ -1,9 +1,5 @@
 package modeladoysimulacion.MedioCurso.Pruebas;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Scanner;
 import modeladoysimulacion.MedioCurso.GRandom;
 
 /*
@@ -58,7 +54,10 @@ public class Series {
     }
 
     public void calculateFe() {
+        System.out.println("\nCalculando FEi: \n\t");
+        System.out.println("\tFEi = (" + numRectSize + " - 1) / n\u00B2\n");
         Fe = (((double) numRectSize) - 1.0) / ((double) Math.pow(n, 2));
+        System.out.println("\n\tFEi = " + Fe);
     }
 
     public void setCoords() {
@@ -111,11 +110,13 @@ public class Series {
             this.quadrCoords[valueInY][valueInX] = this.quadrCoords[valueInY][valueInX] + 1;
 
         }
+        
+        System.out.println("\n\n");
 
     }
 
     public void printArray() {
-        System.out.println("\n\nCoordenadas:\n");
+        System.out.println("Coordenadas:\n");
         for (double[] d : coords) {
 
             System.out.print("\t");
@@ -125,13 +126,15 @@ public class Series {
             }
             System.out.print("\n");
         }
+        System.out.println("\n");
     }
 
     public void checkIfAccepted() {
+        System.out.println("Proceder a comparar: \n\tX\u00B2o < X\u00B2\u03B1, n-1");
         if (result < this.alpha) {
-            System.out.println("\n\t" + this.result + " < " + this.alpha + "\n\tPor lo tanto, los Numeros son Aceptados");
+            System.out.println("\t" + this.result + " < " + this.alpha + "\n\tPor lo tanto, los numeros son aceptados");
         } else {
-            System.out.println("\n\t" + this.result + " > " + this.alpha + "\n\tLos Numeros no son aceptados");
+            System.out.println("\t" + this.result + " > " + this.alpha + "\n\tPor lo tanto, los numeros no son aceptados");
         }
     }
 
@@ -140,6 +143,7 @@ public class Series {
         for (double a : numRect) {
             System.out.println("\t" + a);
         }
+        System.out.println("\n");
     }
 
     public void printQuadrs() {

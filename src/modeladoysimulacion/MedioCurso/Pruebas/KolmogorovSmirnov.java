@@ -51,9 +51,9 @@ public class KolmogorovSmirnov {
     }
     
     public KolmogorovSmirnov print(){
-        System.out.println("i"+"\tXi"+"\t\tF(Xi)"+"\t\tDn");
+        System.out.println("i"+"\tXi"+"\t\tF(Xi)"+"\t\tDn = MAX|F(Xi)-Xi|");
         for(int i = 1; i < n + 1; i++){
-            System.out.println(i+"\t"+recs[i-1]+"\t\t"+i+"/"+n+"="+fxi[i-1]+"\t"+fxi[i-1]+"-"+recs[i-1]+"="+dn[i-1]);
+            System.out.println(i+"\t"+recs[i-1]+"\t\t"+i+" / "+n+" = "+fxi[i-1]+"\t"+fxi[i-1]+" - "+recs[i-1]+" = "+dn[i-1]);
             //System.out.println("Dato " + i + " : " + recs[i - 1]);
             //System.out.println(fxi[i-1]);
         }
@@ -61,13 +61,18 @@ public class KolmogorovSmirnov {
     }
     
     public boolean compareD(double d){
-        System.out.println("Dn = "+may);
-        System.out.println("\n"+may+"<"+d);
+        System.out.println("\nProcediendo a buscar el mayor valor en Dn... ");
+        System.out.println("\n\tValor Mayor Obtenido: Dn = " + may);
+        System.out.println("\nEl estadistico calculado debe ser menor que el estadistico de tablas, para"
+                + " que los numeros sean aceptados \nDn < d\u03B1,N");
+        
+        System.out.println("");
+        System.out.println("\n¿ "+may+" < "+d + " ?\n");
         if(may<d){
-            System.out.println("Los numeros son Aceptados");
+            System.out.println("Verdadero, por lo tanto los numeros son aceptados");
             return true;
         }else{
-            System.out.println("Los numeros No son Aceptados");
+            System.out.println("Falso, por lo tanto los numeros no son aceptados");
             return false;
         }
     }

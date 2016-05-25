@@ -26,14 +26,22 @@ public class Exponencial {
         r = GRandom.getRndL(numR);
         x = new double[numR+1];
         xSum = 0;
+        
+        System.out.println("\nNumeros rectangulares obtenidos:\n");
+        for (double a : r) {
+            System.out.println("\t" + a);
+        }
+        
+        System.out.println("\n\nX por servicio: \n");
         for(int i=0;i<numR;i++){
             x[i] = -((double)1/(double)lambda)*Math.log(r[i]);
             xSum = x[i]+xSum;
-            System.out.println("X["+(i+1)+"]=-1/3 ln("+r[i]+")="+x[i]);
+            System.out.println("\tX["+(i+1)+"] = -1/3 ln( "+r[i]+" ) = "+x[i]);
         }
         xProm = xSum/numR;
         
-        System.out.println("\t X Total: "+xSum);
-        System.out.println("\t X Prom: "+xProm);
+        System.out.println("\n"
+                + "\t X Total: "+xSum);
+        System.out.println("\tX Prom = " + xSum + " / " + numR +" = " + xProm);
     }
 }
